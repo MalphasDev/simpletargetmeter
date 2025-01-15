@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Spendenbarometer
-Description: Ein einfaches Spendenbarometer mit manuellem Fortschrittsupdate.
+Plugin Name: simpletargetmeter
+Description: Ein einfaches simpletargetmeter mit manuellem Fortschrittsupdate.
 Version: 1.0
 Author: Geistesfunke / André Busch
 */
@@ -12,39 +12,39 @@ if (!defined('ABSPATH')) {
 }
 
 // Admin-Seite hinzufügen
-function spendenbarometer_add_admin_menu() {
+function simpletargetmeter_add_admin_menu() {
     add_menu_page(
-        'Spendenbarometer',                // Seitentitel
-        'Spendenbarometer',                // Menü-Name
+        'simpletargetmeter',                // Seitentitel
+        'simpletargetmeter',                // Menü-Name
         'manage_options',                  // Berechtigung
-        'spendenbarometer',                // Slug
-        'spendenbarometer_settings_page',  // Callback-Funktion
+        'simpletargetmeter',                // Slug
+        'simpletargetmeter_settings_page',  // Callback-Funktion
         'dashicons-chart-bar'              // Dashicon
     );
 }
-add_action('admin_menu', 'spendenbarometer_add_admin_menu');
+add_action('admin_menu', 'simpletargetmeter_add_admin_menu');
 
 // Einstellungen registrieren
-function spendenbarometer_register_settings() {
-    register_setting('spendenbarometer_settings', 'spendenziel');
-    register_setting('spendenbarometer_settings', 'spendenstand');
+function simpletargetmeter_register_settings() {
+    register_setting('simpletargetmeter_settings', 'spendenziel');
+    register_setting('simpletargetmeter_settings', 'spendenstand');
 }
-add_action('admin_init', 'spendenbarometer_register_settings');
+add_action('admin_init', 'simpletargetmeter_register_settings');
 
 // Admin-Seiteninhalt
-function spendenbarometer_settings_page() {
+function simpletargetmeter_settings_page() {
     ?>
     <div class="wrap">
-        <h1>Spendenbarometer Einstellungen</h1>
+        <h1>simpletargetmeter Einstellungen</h1>
         <form method="post" action="options.php">
             <?php
-            settings_fields('spendenbarometer_settings');
-            do_settings_sections('spendenbarometer_settings');
+            settings_fields('simpletargetmeter_settings');
+            do_settings_sections('simpletargetmeter_settings');
             ?>
-            <div class="spendenbarometer-settings-layout">
+            <div class="simpletargetmeter-settings-layout">
                 <!-- Linke Seite: Einstellungen -->
-                <div class="spendenbarometer-box">
-                <div class="spendenbarometer-settings">
+                <div class="simpletargetmeter-box">
+                <div class="simpletargetmeter-settings">
                     <label for="spendenziel">Spendenziel (€)</label>
                     <input type="number" id="spendenziel" name="spendenziel" value="<?php echo esc_attr(get_option('spendenziel', 1000)); ?>" />
 
@@ -73,7 +73,7 @@ function spendenbarometer_settings_page() {
                 </div>
                 
 
-                <div class="spendenbarometer-box">
+                <div class="simpletargetmeter-box">
                         <h2>Vorschau</h2>
                         <?php
                         // Hole die aktuelle Ausrichtung des Barometers
@@ -85,7 +85,7 @@ function spendenbarometer_settings_page() {
                             : "height: {$balkenhoehe}px; width: 100%;"; // Horizontale Ausrichtung
                         ?>
                         <!-- Fortschrittsbalken-Vorschau -->
-                        <div class="spendenbarometer-preview spendenbarometer" style="background-color: <?php echo esc_attr(get_option('balkenhintergrundfarbe', '#e0e0e0')); ?>; position: relative; <?php echo $preview_styles; ?>">
+                        <div class="simpletargetmeter-preview simpletargetmeter" style="background-color: <?php echo esc_attr(get_option('balkenhintergrundfarbe', '#e0e0e0')); ?>; position: relative; <?php echo $preview_styles; ?>">
                             <div class="spendenbalken" style="position: absolute; left: 0; <?php 
                                 if ($ausrichtung === 'vertical') {
                                     // Vertikale Balkenstile
@@ -100,15 +100,15 @@ function spendenbarometer_settings_page() {
 
                     
 
-                    <div class="spendenbarometer-box">
+                    <div class="simpletargetmeter-box">
                         <h2>Anleitung</h2>
                         <ul>
-                            <li>Mit dem Spendenbarometer können Sie den Fortschritt Ihrer Spendensammlung visualisieren.</li>
+                            <li>Mit dem simpletargetmeter können Sie den Fortschritt Ihrer Spendensammlung visualisieren.</li>
                             <li>Im Dropdown-Menü können Sie die Ausrichtung (horizontal oder vertikal) des Fortschrittsbalkens auswählen.</li>
                             <li>Vergessen Sie nicht, Ihre Einstellungen zu speichern!</li>
                         </ul>
                         <br>
-                        <p>Vielen Dank für das nutzen des Spendenbarometers von <a href="https://geistesfunke-design.de" target="_blank">Geistesfunke</a>!</p>
+                        <p>Vielen Dank für das nutzen des simpletargetmeters von <a href="https://geistesfunke-design.de" target="_blank">Geistesfunke</a>!</p>
                         <p>André Busch</p>
                         <p><a href="https://geistesfunke-design.de" target="_blank"><img src="<?php echo plugins_url('img/newLogo_Lang_w400.png', __FILE__); ?>"></a></p>
                     </div>
@@ -122,7 +122,7 @@ function spendenbarometer_settings_page() {
 }
 
 
-function spendenbarometer_save_params() {
+function simpletargetmeter_save_params() {
     if (isset($_POST['balkenhintergrundfarbe'])) {
         update_option('balkenhintergrundfarbe', sanitize_hex_color($_POST['balkenhintergrundfarbe']));
     }
@@ -136,11 +136,11 @@ function spendenbarometer_save_params() {
         update_option('balkenausrichtung', sanitize_text_field($_POST['balkenausrichtung']));
     }
 }
-add_action('admin_init', 'spendenbarometer_save_params');
+add_action('admin_init', 'simpletargetmeter_save_params');
 
 
-// Shortcode für das Spendenbarometer
-function spendenbarometer_shortcode() {
+// Shortcode für das simpletargetmeter
+function simpletargetmeter_shortcode() {
     $ziel = get_option('spendenziel', 1000);
     $stand = get_option('spendenstand', 0);
     $prozent = ($ziel > 0) ? min(100, round(($stand / $ziel) * 100)) : 0;
@@ -160,30 +160,30 @@ function spendenbarometer_shortcode() {
 
     ob_start();
     ?>
-    <div class="spendenbarometer" style="background-color: <?php echo $balkenhintergrundfarbe; ?>; <?php echo $styles; ?>">
+    <div class="simpletargetmeter" style="background-color: <?php echo $balkenhintergrundfarbe; ?>; <?php echo $styles; ?>">
         <div class="spendenbalken" style="<?php echo $balken_styles; ?>"></div>
     </div>
     <p><?php echo esc_html($prozent); ?>% erreicht – <?php echo esc_html($stand); ?>€ von <?php echo esc_html($ziel); ?>€</p>
     <?php
     return ob_get_clean();
 }
-add_shortcode('spendenbarometer', 'spendenbarometer_shortcode');
+add_shortcode('simpletargetmeter', 'simpletargetmeter_shortcode');
 
 // CSS einbinden (Frontend)
-function spendenbarometer_enqueue_styles() {
-    wp_enqueue_style('spendenbarometer-style', plugins_url('css/style.css', __FILE__));
+function simpletargetmeter_enqueue_styles() {
+    wp_enqueue_style('simpletargetmeter-style', plugins_url('css/style.css', __FILE__));
 }
-add_action('wp_enqueue_scripts', 'spendenbarometer_enqueue_styles');
+add_action('wp_enqueue_scripts', 'simpletargetmeter_enqueue_styles');
 
 // CSS einbinden (Admin)
-function spendenbarometer_admin_styles($hook) {
-    // Nur für die Spendenbarometer-Seite CSS laden
-    if ($hook !== 'toplevel_page_spendenbarometer') {
+function simpletargetmeter_admin_styles($hook) {
+    // Nur für die simpletargetmeter-Seite CSS laden
+    if ($hook !== 'toplevel_page_simpletargetmeter') {
         return;
     }
 
-    wp_enqueue_style('spendenbarometer-admin-style', plugins_url('css/admin-style.css', __FILE__));
+    wp_enqueue_style('simpletargetmeter-admin-style', plugins_url('css/admin-style.css', __FILE__));
     wp_enqueue_style('wp-color-picker'); // WordPress-Farbauswahl
-    wp_enqueue_script('spendenbarometer-color-picker', plugins_url('js/color-picker.js', __FILE__), ['wp-color-picker'], false, true);
+    wp_enqueue_script('simpletargetmeter-color-picker', plugins_url('js/color-picker.js', __FILE__), ['wp-color-picker'], false, true);
 }
-add_action('admin_enqueue_scripts', 'spendenbarometer_admin_styles');
+add_action('admin_enqueue_scripts', 'simpletargetmeter_admin_styles');
