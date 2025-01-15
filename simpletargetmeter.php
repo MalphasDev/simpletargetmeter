@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: simpletargetmeter
-Description: Ein einfaches simpletargetmeter mit manuellem Fortschrittsupdate.
+Plugin Name: Simple Target Meter
+Description: Ein einfaches Spendenbarometer mit manuellem Fortschrittsupdate.
 Version: 1.0
 Author: Geistesfunke / André Busch
 */
@@ -14,8 +14,8 @@ if (!defined('ABSPATH')) {
 // Admin-Seite hinzufügen
 function simpletargetmeter_add_admin_menu() {
     add_menu_page(
-        'simpletargetmeter',                // Seitentitel
-        'simpletargetmeter',                // Menü-Name
+        'Simple Target Meter',                // Seitentitel
+        'Simple Target Meter',                // Menü-Name
         'manage_options',                  // Berechtigung
         'simpletargetmeter',                // Slug
         'simpletargetmeter_settings_page',  // Callback-Funktion
@@ -35,7 +35,7 @@ add_action('admin_init', 'simpletargetmeter_register_settings');
 function simpletargetmeter_settings_page() {
     ?>
     <div class="wrap">
-        <h1>simpletargetmeter Einstellungen</h1>
+        <h1>Simple Target Meter Einstellungen</h1>
         <form method="post" action="options.php">
             <?php
             settings_fields('simpletargetmeter_settings');
@@ -102,8 +102,13 @@ function simpletargetmeter_settings_page() {
 
                     <div class="simpletargetmeter-box">
                         <h2>Anleitung</h2>
+                        "Simple Target Meter" ist ein kleines und einfaches Tool, um den Fortschritt Ihrer Spendensammlung oder jedes anderen Fortschritts zu visualisieren. Es ist für Spendenzeiele gedacht, kann aber für jeden anderen Bereich verwendet werden.
                         <ul>
-                            <li>Mit dem simpletargetmeter können Sie den Fortschritt Ihrer Spendensammlung visualisieren.</li>
+                            
+                            <li><strong>Ziel:</strong> Definieren Sie hier das Ziel, das Sie erreichen wollen.</li>
+                            <li><strong>Aktuell:</strong> Geben Sie hier ein, wie viel bereits gesammelt oder erreicht wurde.</li>
+                            <li><strong>Farben:</strong> Benutzen Sie die Farbwähler, um die Farben des "Simple Target Meter" an ihr Design anzupassen.</li>
+                            <li><strong>Sträke:</strong> Legen Sie die Stärke des Fortschrittsbalkens in Pixeln fest.</li>
                             <li>Im Dropdown-Menü können Sie die Ausrichtung (horizontal oder vertikal) des Fortschrittsbalkens auswählen.</li>
                             <li>Vergessen Sie nicht, Ihre Einstellungen zu speichern!</li>
                         </ul>
