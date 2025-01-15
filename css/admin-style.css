@@ -3,14 +3,14 @@ ul {
     padding-left: 30px;
 }
 
-.spendenbarometer-settings-layout {
+.simpletargetmeter-settings-layout {
     display: grid;
     grid-template-columns: 1fr 250px 1fr;
     gap: 20px;
     margin-top: 30px;
 }
 
-.spendenbarometer-settings {
+.simpletargetmeter-settings {
     display: grid;
     grid-template-columns: 300px 200px;
     grid-template-rows: repeat(5, 40px);
@@ -18,37 +18,37 @@ ul {
     gap: 10px;
 }
 
-.spendenbarometer-box {
+.simpletargetmeter-box {
     padding: 20px;
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-.spendenbarometer-box > * {
+.simpletargetmeter-box > * {
     width: 100%;
 }
 
-.spendenbarometer-box > h2 {
+.simpletargetmeter-box > h2 {
     margin-top: 0;
     font-size: 18px;
 }
 
-.spendenbarometer-box > p {
+.simpletargetmeter-box > p {
     font-size: 14px;
     color: #555;
 }
 
-.spendenbarometer-anleitung ol {
+.simpletargetmeter-anleitung ol {
     margin: 10px 0;
     padding-left: 20px;
 }
 
-.spendenbarometer-anleitung li {
+.simpletargetmeter-anleitung li {
     margin-bottom: 10px;
 }
 
-.spendenbarometer-anleitung code {
+.simpletargetmeter-anleitung code {
     background: #eee;
     padding: 2px 5px;
     border-radius: 3px;
@@ -56,7 +56,7 @@ ul {
     font-size: 90%;
 }
 
-.spendenbarometer {
+.simpletargetmeter {
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -64,7 +64,7 @@ ul {
     border-radius: 5px;
 }
 
-.spendenbarometer .spendenbalken {
+.simpletargetmeter .spendenbalken {
     transition: all 0.5s ease-in-out;
 }
 

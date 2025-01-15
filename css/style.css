@@ -3,7 +3,7 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
 }
-.spendenbarometer {
+.simpletargetmeter {
     width: 100%;
     background-color: #e0e0e0;
     border-radius: 5px;
