@@ -1,0 +1,19 @@
+.admininput {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+}
+.spendenbarometer {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+    position: relative;
+}
+
+.spendenbalken {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.5s;
+}
